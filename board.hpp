@@ -1,9 +1,9 @@
 #pragma once
 
-#include <cstdio>
 #include "defs.hpp"
+#include <cstdio>
 
-inline const std::size_t getSquare(std::size_t row, std::size_t col) {
+inline std::size_t getSquare(std::size_t row, std::size_t col) {
     return 8 * row + col;
 }
 

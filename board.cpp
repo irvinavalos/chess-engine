@@ -26,6 +26,6 @@ int printBoard(u64 board) {
 }
 
 int shiftBoard(u64 *board, square sq) {
-    *board |= (1ull << (u64)sq);
+    *board |= (1ull << sq);
     return 0;
 }

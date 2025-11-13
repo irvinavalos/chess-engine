@@ -25,24 +25,24 @@ namespace BBoard {
     };
     // clang-format on
 
+    enum Color { WHITE, BLACK };
+
     Square getSquare(std::size_t row, std::size_t column);
 
     void printBoard(u64 board);
 
     void setSquare(u64 &board, Square square);
 
-    u64 shiftNortheast(u64 board);
-
-    u64 shiftNorthwest(u64 board);
-
-    u64 whitePawnEastAttack(u64 board);
-
-    u64 whitePawnWestAttack(u64 board);
-
     u64 whitePawnAnyAttack(u64 board);
 
     u64 whitePawnDoubleAttack(u64 board);
 
     u64 whitePawnSingleAttack(u64 board);
+
+    u64 blackPawnAnyAttack(u64 board);
+
+    u64 blackPawnDoubleAttack(u64 board);
+
+    u64 blackPawnSingleAttack(u64 board);
 
 } // namespace BBoard

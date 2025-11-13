@@ -1,5 +1,33 @@
 #include "bitboard.hpp"
 
+namespace {
+    u64 shiftNortheast(u64 board) { return (board << 9) & ~FILE_A; }
+
+    u64 shiftNorthwest(u64 board) { return (board << 7) & ~FILE_H; }
+
+    u64 shiftSoutheast(u64 board) { return (board >> 7) & ~FILE_A; }
+
+    u64 shiftSouthwest(u64 board) { return (board >> 9) & ~FILE_H; }
+
+    u64 pawnEastAttack(u64 board, BBoard::Color color) {
+        switch (color) {
+        case BBoard::Color::WHITE:
+            return shiftNortheast(board);
+        case BBoard::Color::BLACK:
+            return shiftSoutheast(board);
+        }
+    }
+
+    u64 pawnWestAttack(u64 board, BBoard::Color color) {
+        switch (color) {
+        case BBoard::Color::WHITE:
+            return shiftNorthwest(board);
+        case BBoard::Color::BLACK:
+            return shiftSouthwest(board);
+        }
+    }
+} // namespace
+
 BBoard::Square BBoard::getSquare(std::size_t row, std::size_t column) {
     return static_cast<Square>(MAX_COLS * row + column);
 }
@@ -25,22 +53,32 @@ void BBoard::setSquare(u64 &board, BBoard::Square square) {
     board |= (1ull << square);
 }
 
-u64 BBoard::shiftNortheast(u64 board) { return (board << 9) & ~FILE_A; }
-
-u64 BBoard::shiftNorthwest(u64 board) { return (board << 7) & ~FILE_H; }
-
-u64 BBoard::whitePawnEastAttack(u64 board) { return shiftNortheast(board); }
-
-u64 BBoard::whitePawnWestAttack(u64 board) { return shiftNorthwest(board); }
-
 u64 BBoard::whitePawnAnyAttack(u64 board) {
-    return whitePawnWestAttack(board) | whitePawnEastAttack(board);
+    return pawnWestAttack(board, BBoard::Color::WHITE) |
+           pawnEastAttack(board, BBoard::Color::WHITE);
 }
 
 u64 BBoard::whitePawnDoubleAttack(u64 board) {
-    return whitePawnWestAttack(board) & whitePawnEastAttack(board);
+    return pawnWestAttack(board, BBoard::Color::WHITE) &
+           pawnEastAttack(board, BBoard::Color::WHITE);
 }
 
 u64 BBoard::whitePawnSingleAttack(u64 board) {
-    return whitePawnWestAttack(board) ^ whitePawnEastAttack(board);
+    return pawnWestAttack(board, BBoard::Color::WHITE) ^
+           pawnEastAttack(board, BBoard::Color::WHITE);
+}
+
+u64 BBoard::blackPawnAnyAttack(u64 board) {
+    return pawnWestAttack(board, BBoard::Color::BLACK) |
+           pawnEastAttack(board, BBoard::Color::BLACK);
+}
+
+u64 BBoard::blackPawnDoubleAttack(u64 board) {
+    return pawnWestAttack(board, BBoard::Color::BLACK) &
+           pawnEastAttack(board, BBoard::Color::BLACK);
+}
+
+u64 BBoard::blackPawnSingleAttack(u64 board) {
+    return pawnWestAttack(board, BBoard::Color::BLACK) ^
+           pawnEastAttack(board, BBoard::Color::BLACK);
 }

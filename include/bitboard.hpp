@@ -1,18 +1,17 @@
 #pragma once
 
 #include <cstdio>
-#include <memory>
 
 typedef unsigned long long u64;
 
 constexpr std::size_t MAX_COLS = 8;
 
-constexpr u64 A_FILE = 0x0101010101010101;
-constexpr u64 H_FILE = 0x8080808080808080;
+constexpr u64 FILE_A = 0x0101010101010101;
+constexpr u64 FILE_H = 0x8080808080808080;
 constexpr u64 RANK_8 = 0xff00000000000000;
 constexpr u64 RANK_1 = 0x00000000000000ff;
 
-namespace Board {
+namespace BBoard {
     // clang-format off
     enum Square {
         a1, b1, c1, d1, e1, f1, g1, h1,
@@ -32,4 +31,18 @@ namespace Board {
 
     void setSquare(u64 &board, Square square);
 
-} // namespace Board
+    u64 shiftNortheast(u64 board);
+
+    u64 shiftNorthwest(u64 board);
+
+    u64 whitePawnEastAttack(u64 board);
+
+    u64 whitePawnWestAttack(u64 board);
+
+    u64 whitePawnAnyAttack(u64 board);
+
+    u64 whitePawnDoubleAttack(u64 board);
+
+    u64 whitePawnSingleAttack(u64 board);
+
+} // namespace BBoard

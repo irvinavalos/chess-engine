@@ -1,5 +1,9 @@
 #include "board.hpp"
 
+Board::Square Board::getSquare(std::size_t row, std::size_t column) {
+    return static_cast<Square>(MAX_COLS * row + column);
+}
+
 void Board::printBoard(u64 board) {
     for (std::size_t i = 8; i > 0; --i) {
         std::printf("%lu  ", i);
@@ -13,9 +17,10 @@ void Board::printBoard(u64 board) {
         }
         std::printf("\n");
     }
-    std::printf("\n    a b c d e f g h\n");
+    std::printf("\n    a b c d e f g h\n\n");
+    std::printf(" Board: 0x%llu\n", board);
 }
 
-Board::Square Board::getSquare(std::size_t row, std::size_t column) {
-    return static_cast<Square>(MAX_COLS * row + column);
+void Board::setSquare(u64 &board, Board::Square square) {
+    board |= (1ull << square);
 }

@@ -1,12 +1,12 @@
 [
     {
         "directory": "/home/wave/work/github/irvinavalos/chess-engine",
-        "command": "clang++ -std=c++20 -Wall -Wextra -Wpedantic -o main.o -c main.cpp",
+        "command": "clang++ -std=c++20 -Wall -Wextra -Wpedantic -Iinclude/ -o main.o -c src/main.cpp",
         "file": "main.cpp"
     },
     {
         "directory": "/home/wave/work/github/irvinavalos/chess-engine",
-        "command": "clang++ -std=c++20 -Wall -Wextra -Wpedantic -o board.o -c board.cpp",
+        "command": "clang++ -std=c++20 -Wall -Wextra -Wpedantic -Iinclude/ -o board.o -c src/board.cpp",
         "file": "board.cpp"
     }
 ]

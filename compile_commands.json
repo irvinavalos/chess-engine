@@ -6,7 +6,7 @@
     },
     {
         "directory": "/home/wave/work/github/irvinavalos/chess-engine",
-        "command": "clang++ -std=c++20 -Wall -Wextra -Wpedantic -Iinclude/ -o board.o -c src/board.cpp",
+        "command": "clang++ -std=c++20 -Wall -Wextra -Wpedantic -Iinclude/ -o bitboard.o -c src/bitboard.cpp",
         "file": "board.cpp"
     }
 ]

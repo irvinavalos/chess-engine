@@ -4,5 +4,13 @@
 #include <array>
 
 class CBoard {
-    std::array<u64, 128> pawnAttacks;
+private:
+    u64 generatePawnAttack(u64 board, BBoard::Color color);
+
+public:
+    std::array<std::array<u64, 64>, 2> pawnAttacks;
+
+    CBoard() { initPawnAttacks(); };
+
+    void initPawnAttacks();
 };

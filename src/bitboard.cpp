@@ -33,8 +33,9 @@ BBoard::Square BBoard::getSquare(std::size_t row, std::size_t column) {
 }
 
 void BBoard::printBoard(u64 board) {
+    std::printf("--------------------------------------------\n\n");
     for (std::size_t i = 8; i > 0; --i) {
-        std::printf("%lu  ", i);
+        std::printf("\t%lu  ", i);
         for (std::size_t j = 0; j < 8; ++j) {
             auto s = getSquare(i - 1, j);
             if (board & (1ull << s)) {
@@ -45,8 +46,8 @@ void BBoard::printBoard(u64 board) {
         }
         std::printf("\n");
     }
-    std::printf("\n    a b c d e f g h\n\n");
-    std::printf(" Board: 0x%llu\n", board);
+    std::printf("\n\t    a b c d e f g h\n\n");
+    std::printf("  Board: 0x%llx\n\n", board);
 }
 
 void BBoard::setSquare(u64 &board, BBoard::Square square) {
